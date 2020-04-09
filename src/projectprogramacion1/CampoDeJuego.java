@@ -130,6 +130,16 @@ public class CampoDeJuego {
         return listaMinas;
         
     }
+
+    public CampoDeJuego(int dimensionX, int dimensionY, int numeroMinas) {
+        this.dimensionX = dimensionX;
+        this.dimensionY = dimensionY;
+        this.numeroMinas = numeroMinas;
+        this.minas = generarListaMinas(numeroMinas, dimensionX, dimensionY);
+        this.player1 = new Jugador();
+        this.meta = new Meta();
+    }
+    
     
     
     
