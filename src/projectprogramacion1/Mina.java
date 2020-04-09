@@ -35,6 +35,14 @@ public class Mina {
         this.estadoMina = "Activa";
     }
     
+    public int[] traerCoordenadasMina(){
+    
+        int x = coordenadaMinaX;
+        int y = coordenadaMinaY;
+        int[] coordenadasMina = { x , y };
+        return coordenadasMina;
+    
+    }
     
     
 }

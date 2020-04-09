@@ -67,11 +67,66 @@ public class CampoDeJuego {
     
     
   
-    private static ArrayList<Mina> generarListaMinas(int numMinas){
+    @SuppressWarnings("empty-statement")
+    
+    private static Boolean verificarCoordenadasRepetidas(int[] coordenadasMina, ArrayList<int[]> listaCoordenadas){
+        
+        Boolean result = null;
+        
+        for (int[] index:listaCoordenadas){
+                
+            
+            if (listaCoordenadas.isEmpty()) {
+                
+                result = false;
+                       
+            }
+            else if (index == coordenadasMina){
+                    
+                result = true; 
+                    
+                }
+                
+            else {
+            
+                result = false;
+                
+            }
+                
+        }
+        
+        return result;
+        
+      }
+    
+    
+    public static ArrayList<Mina> generarListaMinas(int numMinas, int dimensionX, int dimensionY){
         
         ArrayList<Mina> listaMinas = new ArrayList<Mina>();
-        Mina mina = new Mina();
-        listaMinas.add(mina);
+        ArrayList<int[]> listaCoordenadas = new ArrayList<int[]>();
+        
+        for (int i = 0; i < numMinas; i++){
+            
+            Mina mina = new Mina();
+            Random r = new Random();
+                        
+            do {
+            
+            int x = r.nextInt(dimensionX - 1);
+            int y = r.nextInt(dimensionY - 1);
+            mina.setCoordenadaMinaX(x);
+            mina.setCoordenadaMinaY(y);
+            
+            }
+            
+            while(verificarCoordenadasRepetidas(mina.traerCoordenadasMina(),listaCoordenadas));
+            
+            listaCoordenadas.add(mina.traerCoordenadasMina());          
+            listaMinas.add(mina);
+            
+        }
+        
+        
         return listaMinas;
         
     }
