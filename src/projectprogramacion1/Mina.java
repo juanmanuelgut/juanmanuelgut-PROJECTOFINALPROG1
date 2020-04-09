@@ -11,4 +11,30 @@ package projectprogramacion1;
  */
 public class Mina {
     
+    private int coordenadaMinaX;
+    private int coordenadaMinaY;
+    private String estadoMina;
+    
+    public int getCoordenadaMinaX() {
+        return coordenadaMinaX;
+    }
+
+    public int getCoordenadaMinaY() {
+        return coordenadaMinaY;
+    }
+
+    public void setCoordenadaMinaX(int coordenadaMinaX) {
+        this.coordenadaMinaX = coordenadaMinaX;
+    }
+
+    public void setCoordenadaMinaY(int coordenadaMinaY) {
+        this.coordenadaMinaY = coordenadaMinaY;
+    }
+
+    public Mina() {
+        this.estadoMina = "Activa";
+    }
+    
+    
+    
 }
