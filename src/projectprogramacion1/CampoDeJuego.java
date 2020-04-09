@@ -5,10 +5,78 @@
  */
 package projectprogramacion1;
 
+import java.util.*;
+
 /**
  *
  * @author juangutierrez
  */
 public class CampoDeJuego {
+    
+    private String forma;
+    private int dimensionX;
+    private int dimensionY;
+    private int numeroMinas;
+    private ArrayList<Mina> minas = new ArrayList<Mina>();
+    private Jugador player1 = new Jugador();
+    private Meta meta = new Meta();
+
+    public void setDimensionX(int dimensionX) {
+        this.dimensionX = dimensionX;
+    }
+
+    public void setDimensionY(int dimensionY) {
+        this.dimensionY = dimensionY;
+    }
+
+    public void setNumeroMinas(int numeroMinas) {
+        this.numeroMinas = numeroMinas;
+    }
+
+    public void setPlayer1(Jugador player1) {
+        this.player1 = player1;
+    }
+
+    public void setMeta(Meta meta) {
+        this.meta = meta;
+    }
+
+    public int getDimensionX() {
+        return dimensionX;
+    }
+
+    public int getDimensionY() {
+        return dimensionY;
+    }
+
+    public int getNumeroMinas() {
+        return numeroMinas;
+    }
+
+    public ArrayList<Mina> getMinas() {
+        return minas;
+    }
+
+    public Jugador getPlayer1() {
+        return player1;
+    }
+
+    public Meta getMeta() {
+        return meta;
+    }
+    
+    
+  
+    private static ArrayList<Mina> generarListaMinas(int numMinas){
+        
+        ArrayList<Mina> listaMinas = new ArrayList<Mina>();
+        Mina mina = new Mina();
+        listaMinas.add(mina);
+        return listaMinas;
+        
+    }
+    
+    
+    
     
 }
