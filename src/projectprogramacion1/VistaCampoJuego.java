@@ -24,8 +24,11 @@ public class VistaCampoJuego {
         
         for (int j = 0; j < dimensionY; j++){
             for (int i = 0; i < dimensionX; i++){
-        
-                JButton b=new JButton("click");//creating instance of JButton
+                
+                int coordenadaY = dimensionY - j;
+                int coordenadaX = i;
+                BotonMina b;//creating instance of JButton
+                b = new BotonMina(coordenadaX ,coordenadaY);
                 int xAxis;
                 int yAxis;
                 xAxis = 0 + (i * buttonWidth);
