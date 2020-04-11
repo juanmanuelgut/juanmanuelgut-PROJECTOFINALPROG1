@@ -11,4 +11,9 @@ package projectprogramacion1;
  */
 public class Meta {
     
+    private int coordenadaMetaX;
+    private int coordenadaMetaY;
+    
+    
+    
 }
