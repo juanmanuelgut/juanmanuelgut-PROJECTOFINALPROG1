@@ -20,7 +20,7 @@ public class PROJECTPROGRAMACION1 {
     
     VistaCampoJuego juego = new VistaCampoJuego();
     
-    juego.vistaCampoJuego(20,20);
+    juego.vistaCampoJuego(20,20,150);
     
     }
 }

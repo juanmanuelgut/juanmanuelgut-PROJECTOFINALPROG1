@@ -7,15 +7,19 @@ package projectprogramacion1;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Arrays;
 import javax.swing.*;
 
 public class VistaCampoJuego {
 
-    public void vistaCampoJuego(int dimX, int dimY) {
+    public void vistaCampoJuego(int dimX, int dimY, int numMinas) {
 
         JFrame f = new JFrame();
+        CampoDeJuego campo = new CampoDeJuego(dimX, dimY, numMinas);
         int dimensionX = dimX;
         int dimensionY = dimY;
+        int numeroMinas = numMinas;
         int frameWidth = 500;
         int frameHeight = 500;
         int buttonWidth;
@@ -31,12 +35,24 @@ public class VistaCampoJuego {
                 int coordenadaX = i;
                 BotonMina b;//creating instance of JButton
                 b = new BotonMina(coordenadaX, coordenadaY);
+                int[] coordenadasBoton = {coordenadaX , coordenadaY};
                 int xAxis;
                 int yAxis;
                 xAxis = 0 + (i * buttonWidth);
                 yAxis = 0 + (j * buttonHeigth);
                 b.setBounds(xAxis, yAxis, buttonWidth, buttonHeigth);//x axis, y axis, width, height  
                 f.add(b);//adding button in JFrame 
+                
+                for (Mina minas : campo.getMinas()){
+                    
+                    int[] coordenadasMina = minas.traerCoordenadasMina();
+                    
+                    if(Arrays.equals(coordenadasMina, coordenadasBoton)) {
+                        b.setEsMina(Boolean.TRUE);
+                        break;
+                    }
+                    
+                }
 
                 b.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
@@ -52,6 +68,7 @@ public class VistaCampoJuego {
                                 if(b.getEsMina()){
                                     
                                     b.setText("*");
+                                    JOptionPane.showMessageDialog(null, "Perdiste!!!");
                                     break;
                                     
                                 }
@@ -87,5 +104,7 @@ public class VistaCampoJuego {
         f.setVisible(true);//making the frame visible  
 
     }
+    
+    
 
 }

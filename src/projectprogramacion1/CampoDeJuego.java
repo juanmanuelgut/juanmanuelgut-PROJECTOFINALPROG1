@@ -71,7 +71,7 @@ public class CampoDeJuego {
     
     private static Boolean verificarCoordenadasRepetidas(int[] coordenadasMina, ArrayList<int[]> listaCoordenadas){
         
-        Boolean result = null;
+        Boolean result = false;
         
         for (int[] index:listaCoordenadas){
                 
