@@ -16,6 +16,11 @@ public class PROJECTPROGRAMACION1 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-    }
     
+    
+    VistaCampoJuego juego = new VistaCampoJuego();
+    
+    juego.vistaCampoJuego(20,20);
+    
+    }
 }

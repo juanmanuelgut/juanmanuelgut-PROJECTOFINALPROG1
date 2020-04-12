@@ -78,6 +78,7 @@ public class BotonMina extends JButton{
         return esJugador;
     }
 
+    //Constructor
     public BotonMina(int coordenadaBotonX, int coordenadaBotonY) {
         this.coordenadaBotonX = coordenadaBotonX;
         this.coordenadaBotonY = coordenadaBotonY;
@@ -87,5 +88,7 @@ public class BotonMina extends JButton{
         this.status = "Listo";
         this.mascara = "";        
     }
+    
+    
     
 }
