@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import javax.swing.*;
 
 public class VistaCampoJuego {
@@ -25,6 +26,8 @@ public class VistaCampoJuego {
         int frameHeight = 500;
         int buttonWidth;
         int buttonHeigth;
+        ArrayList<BotonMina> listaBotones = new ArrayList<BotonMina>();
+        
 
         buttonWidth = frameWidth / dimensionX;
         buttonHeigth = (frameHeight - 10) / dimensionX;
@@ -42,7 +45,8 @@ public class VistaCampoJuego {
                 xAxis = 0 + (i * buttonWidth);
                 yAxis = 0 + (j * buttonHeigth);
                 b.setBounds(xAxis, yAxis, buttonWidth, buttonHeigth);//x axis, y axis, width, height  
-                f.add(b);//adding button in JFrame 
+                f.add(b);//adding button in JFrame
+                listaBotones.add(b);
                 
                 for (Mina minas : campo.getMinas()){
                     
@@ -70,8 +74,9 @@ public class VistaCampoJuego {
                                 if(b.getEsMina()){
                                     
                                     b.setText("*");
-                                    b.setBackground(Color.red);
-                                    b.setOpaque(true);
+                                    b.setStatus("Detonada");
+                                    //b.setBackground(Color.red);
+                                    //b.setOpaque(true);
                                     JOptionPane.showMessageDialog(null, "Perdiste!!!");
                                     break;
                                     
@@ -90,8 +95,8 @@ public class VistaCampoJuego {
                                 else{
                                 
                                     b.setEsJugador(Boolean.TRUE);
-                                    b.setBackground(Color.green);
-                                    b.setOpaque(true);
+                                    //b.setBackground(Color.green);
+                                    //b.setOpaque(true);
                                     b.setText("J");
                                     
                                 }
@@ -100,14 +105,18 @@ public class VistaCampoJuego {
                         }
 
                     }
-                });
-
+                });       
             }
         }
-
+        
+        /*for (Iterator<BotonMina> it = listaBotones.iterator(); it.hasNext();) {
+            BotonMina = it.next();
+        }*/
+        
+        
         f.setSize(frameWidth, frameHeight);//400 width and 500 height  
         f.setLayout(null);//using no layout managers  
-        f.setVisible(true);//making the frame visible  
+        f.setVisible(true);//making the frame visible
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
