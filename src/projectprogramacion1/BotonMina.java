@@ -89,6 +89,6 @@ public class BotonMina extends JButton{
         this.mascara = "";        
     }
     
-    
+    //Metodo
     
 }

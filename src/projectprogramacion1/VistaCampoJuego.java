@@ -5,6 +5,7 @@
  */
 package projectprogramacion1;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -57,6 +58,7 @@ public class VistaCampoJuego {
                 b.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         
+                       
                         switch(e.getModifiers()){
                         
                             case 17:
@@ -68,6 +70,8 @@ public class VistaCampoJuego {
                                 if(b.getEsMina()){
                                     
                                     b.setText("*");
+                                    b.setBackground(Color.red);
+                                    b.setOpaque(true);
                                     JOptionPane.showMessageDialog(null, "Perdiste!!!");
                                     break;
                                     
@@ -86,6 +90,8 @@ public class VistaCampoJuego {
                                 else{
                                 
                                     b.setEsJugador(Boolean.TRUE);
+                                    b.setBackground(Color.green);
+                                    b.setOpaque(true);
                                     b.setText("J");
                                     
                                 }

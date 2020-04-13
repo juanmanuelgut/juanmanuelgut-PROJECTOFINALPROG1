@@ -139,9 +139,5 @@ public class CampoDeJuego {
         this.player1 = new Jugador();
         this.meta = new Meta();
     }
-    
-    
-    
-    
-    
+  
 }
