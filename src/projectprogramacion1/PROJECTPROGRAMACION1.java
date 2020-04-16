@@ -61,7 +61,7 @@ public class PROJECTPROGRAMACION1 {
         ventana.add(cantY);
         ventana.add(lb_cantMinas);
         ventana.add(cantMinas);
-        ventana.add(btn_iniciarJuego);
+        ventana.add(btn_iniciarJuego);        
 
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Cuando le damos a la X de la venta se cierre y se termina el programa de una vez
         ventana.setLayout(null);   // Nos deja poder anadir componentes sin que se vean feos 
