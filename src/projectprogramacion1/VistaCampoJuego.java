@@ -22,7 +22,7 @@ public class VistaCampoJuego {
         int dimensionY = dimY;
         int numeroMinas = numMinas;
         int frameWidth = 1000;
-        int frameHeight = 1000;
+        int frameHeight = 1100;
         int buttonWidth;
         int buttonHeigth;
         ArrayList<BotonMina> listaBotones = new ArrayList<BotonMina>();
@@ -41,7 +41,7 @@ public class VistaCampoJuego {
                 int xAxis;
                 int yAxis;
                 xAxis = 0 + (i * buttonWidth);
-                yAxis = 0 + (j * buttonHeigth);
+                yAxis = 100 + (j * buttonHeigth);
                 b.setBounds(xAxis, yAxis, buttonWidth, buttonHeigth);//x axis, y axis, width, height  
                 f.add(b);//adding button in JFrame
                 listaBotones.add(b);
@@ -125,8 +125,10 @@ public class VistaCampoJuego {
             
         }*/
         f.setSize(frameWidth, frameHeight);//400 width and 500 height  
-        f.setLayout(null);//using no layout managers  
+        f.setLayout(null);//using no layout manager
+        f.setTitle("Busca Minas");
         f.setVisible(true);//making the frame visible
+        f.setResizable(false);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
