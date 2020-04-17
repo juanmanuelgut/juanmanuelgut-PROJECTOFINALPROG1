@@ -124,6 +124,7 @@ public class VistaCampoJuego {
             }
             
         }*/
+        //
         f.setSize(frameWidth, frameHeight);//400 width and 500 height  
         f.setLayout(null);//using no layout manager
         f.setTitle("Busca Minas");
