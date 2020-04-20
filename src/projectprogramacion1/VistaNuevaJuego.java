@@ -1,4 +1,6 @@
 
+package projectprogramacion1;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -12,6 +14,13 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
+import net.miginfocom.swing.*;
+import net.miginfocom.layout.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Arrays;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -24,13 +33,26 @@ import javax.swing.ScrollPaneConstants;
  * @author tati
  */
 public class VistaNuevaJuego {
-    public static void iniciar(int dimX, int dimY) {
+    public static void iniciar(int dimX, int dimY, int numMinas) {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-
-        int screenWidth = (int) (screenSize.width / 2);
-        int screenHeight = screenSize.height / 2;
+        int screenWidth = (int) (screenSize.width);
+        int screenHeight = screenSize.height;
+        CampoDeJuego campo = new CampoDeJuego(dimX, dimY, numMinas);
+        int dimensionX = dimX;
+        int dimensionY = dimY;
+        int numeroMinas = numMinas;
+        /*int frameWidth = 1000;
+        int frameHeight = 1100;*/
+        int buttonWidth;
+        int buttonHeigth;
+        ArrayList<BotonMina> listaBotones = new ArrayList<BotonMina>();
         
-    
+        /*buttonWidth = frameWidth / dimensionX;
+        buttonHeigth = (frameHeight - 10) / dimensionX;*/
+        
+        buttonWidth = screenWidth / dimensionX;
+        buttonHeigth = (screenHeight - 10) / dimensionX;
+        
         JFrame ventana = new JFrame("Busca Minas");
         JLabel lbl_cantVidasTitulo = new JLabel("Cantidad de vidas restantes: ");
         JLabel lbl_cantVidas = new JLabel("3");
@@ -70,11 +92,84 @@ public class VistaNuevaJuego {
         historial.setEditable(false);
         
 
-        for (int i = 0; i < 50; i++) {
+        for (int j = 0; j < dimensionY; j++) {
+            for (int i = 0; i < dimensionX; i++) {
+
+                int coordenadaY = dimensionY - j;
+                int coordenadaX = i;
+                BotonMina b;//creating instance of JButton
+                b = new BotonMina(coordenadaX, coordenadaY);
+                int[] coordenadasBoton = {coordenadaX, coordenadaY};
+                int xAxis;
+                int yAxis;
+                xAxis = 0 + (i * buttonWidth);
+                yAxis = 100 + (j * buttonHeigth);
+                b.setBounds(xAxis, yAxis, buttonWidth, buttonHeigth);//x axis, y axis, width, height  
+                pnl_btn.add(b, "");//adding button in JFrame
+                listaBotones.add(b);
+
+                for (Mina minas : campo.getMinas()) {
+
+                    int[] coordenadasMina = minas.traerCoordenadasMina();
+
+                    if (Arrays.equals(coordenadasMina, coordenadasBoton)) {
+                        b.setEsMina(Boolean.TRUE);
+                        break;
+                    }
+
+                }
+
+                b.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+
+                        switch (e.getModifiers()) {
+
+                            case 17:
+
+                                b.setText("$");
+                                b.setBackground(Color.blue);
+                                b.setOpaque(true);
+                                break;
+
+                            default:
+                                if (b.getEsMina()) {
+
+                                    b.setText("*");
+                                    b.setStatus("Detonada");
+                                    b.setBackground(Color.red);
+                                    b.setOpaque(true);
+                                    JOptionPane.showMessageDialog(null, "Perdiste!!!");
+                                    break;
+
+                                } else if (b.getEsJugador()) {
+
+                                    JOptionPane.showMessageDialog(null, "Seleccione otra Celda");
+
+                                } else if (b.getEsMeta()) {
+
+                                    b.setText("<>");
+                                    JOptionPane.showMessageDialog(null, "Ganador!!!!");
+
+                                } else {
+
+                                    b.setEsJugador(Boolean.TRUE);
+                                    b.setBackground(Color.green);
+                                    b.setOpaque(true);
+                                    b.setText("J");
+
+                                }
+                        }
+
+                    }
+                });
+            }
+        }
+        
+        /*for (int i = 0; i < 50; i++) {
             JButton b;
             b = new JButton("" + i);
             pnl_btn.add(b, "");
-        }
+        }*/
 
         pnl_btn.setLayout(new GridLayout(dimX, dimY));
         pnl_btn.setSize(200, 500);

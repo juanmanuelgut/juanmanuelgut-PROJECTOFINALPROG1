@@ -5,6 +5,8 @@
  */
 package projectprogramacion1;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 
 /**
@@ -14,7 +16,8 @@ import javax.swing.*;
 public class PROJECTPROGRAMACION1 {
 
     public static void main(String[] args) {
-        VistaCampoJuego juego = new VistaCampoJuego();
+        //VistaCampoJuego juego = new VistaCampoJuego();
+        VistaNuevaJuego juego = new VistaNuevaJuego();
 
 //        Inicio de inicializacion de variables
         JFrame ventana = new JFrame("Inicio de juego"); // El cuadro o ventana donde van a estar los botones y los inputs
@@ -45,15 +48,19 @@ public class PROJECTPROGRAMACION1 {
 
         btn_iniciarJuego.setBounds(50, 170, 200, 20);
 
-        btn_iniciarJuego.addActionListener((e) -> {               // Este es la accion a escuchar para el boton, cada vez que precionamos este boton
-            // todo lo que este dentro del "metodo" por decirso asi, se va a ejecutar
-
-            int dimX = Integer.parseInt(cantX.getText());         // Guardamos el valor del input en una variable con el metodo .getText()
-            int dimY = Integer.parseInt(cantY.getText());
-            int cantMina = Integer.parseInt(cantMinas.getText());
-            juego.vistaCampoJuego(dimX, dimY, cantMina);
-            ventana.dispose();                                    // "Cerramos" la ventana de la configuracion
-
+        btn_iniciarJuego.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Este es la accion a escuchar para el boton, cada vez que precionamos este boton
+                // todo lo que este dentro del "metodo" por decirso asi, se va a ejecutar
+                
+                int dimX = Integer.parseInt(cantX.getText());         // Guardamos el valor del input en una variable con el metodo .getText()
+                int dimY = Integer.parseInt(cantY.getText());
+                int cantMina = Integer.parseInt(cantMinas.getText());
+                //juego.vistaCampoJuego(dimX, dimY, cantMina);
+                juego.iniciar(dimX, dimY, cantMina);
+                ventana.dispose();                                    // "Cerramos" la ventana de la configuracion
+            }
         });
         ventana.add(lb_cantX);  // Anadimos todos los elementos a la ventana
         ventana.add(cantX);
