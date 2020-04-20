@@ -13,7 +13,7 @@ import javax.swing.*;
  *
  * @author juangutierrez
  */
-public class PROJECTPROGRAMACION1 {
+public class ProjectProgramacion1 {
 
     public static void main(String[] args) {
         //VistaCampoJuego juego = new VistaCampoJuego();
