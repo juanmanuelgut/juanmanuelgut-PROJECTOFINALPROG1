@@ -104,7 +104,6 @@ public class CampoDeJuego {
         
         ArrayList<Mina> listaMinas = new ArrayList<Mina>();
         ArrayList<int[]> listaCoordenadas = new ArrayList<int[]>();
-        
         for (int i = 0; i < numMinas; i++){
             
             Mina mina = new Mina();
@@ -112,8 +111,8 @@ public class CampoDeJuego {
                         
             do {
             
-            int x = r.nextInt(dimensionX - 1);
-            int y = r.nextInt(dimensionY - 1);
+            int x = r.nextInt(dimensionX);
+            int y = r.nextInt(dimensionY);
             mina.setCoordenadaMinaX(x);
             mina.setCoordenadaMinaY(y);
             
@@ -123,11 +122,13 @@ public class CampoDeJuego {
             
             listaCoordenadas.add(mina.traerCoordenadasMina());          
             listaMinas.add(mina);
+            //System.out.println("Debug: Lista Coordenadas Minas " + listaMinas.toString());
             
         }
         
-        
+        //System.out.println("Debug: Lista Coordenadas Minas " + listaMinas.toString());
         return listaMinas;
+        
         
     }
 

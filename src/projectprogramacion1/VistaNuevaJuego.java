@@ -89,7 +89,8 @@ public class VistaNuevaJuego {
         for (int j = 0; j < dimensionY; j++) {
             for (int i = 0; i < dimensionX; i++) {
 
-                int coordenadaY = dimensionY - j;
+                int coordenadaY = (dimensionY -1) - j;
+                //System.out.println("DEBUG: COORDENADAS " + coordenadaY);
                 int coordenadaX = i;
                 BotonMina b;//creating instance of JButton
                 b = new BotonMina(coordenadaX, coordenadaY);
@@ -101,6 +102,7 @@ public class VistaNuevaJuego {
                 b.setBounds(xAxis, yAxis, buttonWidth, buttonHeigth);//x axis, y axis, width, height  
                 pnl_btn.add(b, "");//adding button in JFrame
                 listaBotones.add(b);
+                System.out.println("DEBUG: Coordenadas Boton [" + Integer.toString(b.getCoordenadaBotonX())+ " , " + Integer.toString(b.getCoordenadaBotonY()) + "]");
 
                 for (Mina minas : campo.getMinas()) {
 
@@ -108,6 +110,7 @@ public class VistaNuevaJuego {
 
                     if (Arrays.equals(coordenadasMina, coordenadasBoton)) {
                         b.setEsMina(Boolean.TRUE);
+                        System.out.println("DEBUG: Coordenadas Mina" + Arrays.toString(coordenadasMina));
                         break;
                     }
 
