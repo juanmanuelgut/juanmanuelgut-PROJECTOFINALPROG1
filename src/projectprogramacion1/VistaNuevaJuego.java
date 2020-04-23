@@ -33,9 +33,11 @@ public class VistaNuevaJuego {
 
     public static int Vidas = 3;
     public static int minasPisadas = 0;
-
+    final static String path = System.getProperty("user.dir");
+    final static String nombre_archivo = "\\img\\reset.png";
     public static void iniciar(int dimX, int dimY, int numMinas) {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        
         int screenWidth = screenSize.width / 2;
         int screenHeight = screenSize.height / 2;
         CampoDeJuego campo = new CampoDeJuego(dimX, dimY, numMinas);
@@ -75,7 +77,7 @@ public class VistaNuevaJuego {
         btn_reiniciar.setFont(new Font("SerTimesRomanif", Font.PLAIN, 25));
 
         //        Icono para el boton de reiniciar
-        ImageIcon iconoReset = new ImageIcon("C:\\Users\\Mauricio\\Documents\\NetBeansProjects\\PruebaJframeBotones\\img\\reset.png");
+        ImageIcon iconoReset = new ImageIcon(path + nombre_archivo);
         btn_reiniciar.setIcon(iconoReset);
 
         scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
