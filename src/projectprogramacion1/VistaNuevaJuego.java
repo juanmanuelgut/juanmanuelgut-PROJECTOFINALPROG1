@@ -36,8 +36,8 @@ public class VistaNuevaJuego {
 
     public static void iniciar(int dimX, int dimY, int numMinas) {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int screenWidth = screenSize.width / 2;
-        int screenHeight = screenSize.height / 2;
+        int screenWidth = screenSize.width;
+        int screenHeight = screenSize.height;
         CampoDeJuego campo = new CampoDeJuego(dimX, dimY, numMinas);
         int dimensionX = dimX;
         int dimensionY = dimY;
@@ -98,7 +98,7 @@ public class VistaNuevaJuego {
                 b.setBounds(xAxis, yAxis, buttonWidth, buttonHeigth);//x axis, y axis, width, height  
                 pnl_btn.add(b, "");//adding button in JFrame
                 listaBotones.add(b);
-                System.out.println("DEBUG: Coordenadas Boton [" + Integer.toString(b.getCoordenadaBotonX()) + " , " + Integer.toString(b.getCoordenadaBotonY()) + "]");
+                //System.out.println("DEBUG: Coordenadas Boton [" + Integer.toString(b.getCoordenadaBotonX()) + " , " + Integer.toString(b.getCoordenadaBotonY()) + "]");
 
                 for (Mina minas : campo.getMinas()) {
 
@@ -106,7 +106,7 @@ public class VistaNuevaJuego {
 
                     if (Arrays.equals(coordenadasMina, coordenadasBoton)) {
                         b.setEsMina(Boolean.TRUE);
-                        System.out.println("DEBUG: Coordenadas Mina" + Arrays.toString(coordenadasMina));
+                        //System.out.println("DEBUG: Coordenadas Mina" + Arrays.toString(coordenadasMina));
                         break;
                     }
 
@@ -124,13 +124,7 @@ public class VistaNuevaJuego {
                     }
                 });
 
-                btn_reiniciar.addActionListener((e) -> {
-//                    Vista_Config_Juego.config();
-//                    ventana.dispose();
-//                    Vidas = 3;
-//                  Aquí está el error
-
-                });
+               
 
                 b.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
@@ -182,6 +176,16 @@ public class VistaNuevaJuego {
             }
         }
 
+        btn_reiniciar.addActionListener((e) -> {
+            //int test = e.getID();
+            //System.out.println(test);
+
+                    Vista_Config_Juego.config();
+                    ventana.dispose();
+                    Vidas = 3;
+//                  Aquí está el error
+        });
+        
         /*for (int i = 0; i < 50; i++) {
             JButton b;
             b = new JButton("" + i);
