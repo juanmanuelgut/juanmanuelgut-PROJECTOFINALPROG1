@@ -86,6 +86,7 @@ public class VistaNuevaJuego {
             for (int i = 0; i < dimensionX; i++) {
 
                 int coordenadaY = (dimensionY - 1) - j;
+                //Descomentar siguiente linea para deguguear
                 //System.out.println("DEBUG: COORDENADAS " + coordenadaY);
                 int coordenadaX = i;
                 BotonMina b;//creating instance of JButton
@@ -98,6 +99,7 @@ public class VistaNuevaJuego {
                 b.setBounds(xAxis, yAxis, buttonWidth, buttonHeigth);//x axis, y axis, width, height  
                 pnl_btn.add(b, "");//adding button in JFrame
                 listaBotones.add(b);
+                //Descomentar siguiente linea para deguguear
                 //System.out.println("DEBUG: Coordenadas Boton [" + Integer.toString(b.getCoordenadaBotonX()) + " , " + Integer.toString(b.getCoordenadaBotonY()) + "]");
 
                 for (Mina minas : campo.getMinas()) {
@@ -106,6 +108,7 @@ public class VistaNuevaJuego {
 
                     if (Arrays.equals(coordenadasMina, coordenadasBoton)) {
                         b.setEsMina(Boolean.TRUE);
+                        //Descomentar siguiente linea para deguguear
                         //System.out.println("DEBUG: Coordenadas Mina" + Arrays.toString(coordenadasMina));
                         break;
                     }
@@ -177,6 +180,7 @@ public class VistaNuevaJuego {
         }
 
         btn_reiniciar.addActionListener((e) -> {
+            //Descomentar siguiente linea para deguguear
             //int test = e.getID();
             //System.out.println(test);
 
