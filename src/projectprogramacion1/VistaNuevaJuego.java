@@ -20,7 +20,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import javax.swing.JOptionPane;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -37,8 +36,8 @@ public class VistaNuevaJuego {
 
     public static void iniciar(int dimX, int dimY, int numMinas) {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int screenWidth = (int) (screenSize.width);
-        int screenHeight = screenSize.height;
+        int screenWidth = screenSize.width / 2;
+        int screenHeight = screenSize.height / 2;
         CampoDeJuego campo = new CampoDeJuego(dimX, dimY, numMinas);
         int dimensionX = dimX;
         int dimensionY = dimY;
@@ -62,14 +61,10 @@ public class VistaNuevaJuego {
         JPanel mainPanel = new JPanel(new MigLayout("fillx"));
         JPanel pnl_btn = new JPanel(new MigLayout("fillx"));
         JPanel pnl_info = new JPanel(new MigLayout("fillx"));
-        JTextArea historial = new JTextArea("Mi amor 18/4/2020 10:13:00pm\n"
-                + "Mi amor 18/4/2020 10:20:00pm\n"
-                + "Mi amor 18/4/2020 10:25:00pm", 50, 50);
+        JTextArea historial = new JTextArea(50, 50);
         JScrollPane scroll = new JScrollPane(historial);
+        CrearHistorial historialTexto = new CrearHistorial();
 
-//        mainPanel.setBackground(Color.red);
-//        pnl_btn.setBackground(Color.LIGHT_GRAY);
-//        pnl_info.setBackground(Color.DARK_GRAY);
         lbl_cantMinasPisadasTitulo.setFont(new Font("TimesRoman", Font.PLAIN, 25));
         lbl_cantVidasTitulo.setFont(new Font("TimesRoman", Font.PLAIN, 25));
         lbl_cantMinasPisadas.setFont(new Font("TimesRoman", Font.BOLD, 25));
@@ -85,11 +80,12 @@ public class VistaNuevaJuego {
 
         scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         historial.setEditable(false);
+        historial.append(historialTexto.leer());
 
         for (int j = 0; j < dimensionY; j++) {
             for (int i = 0; i < dimensionX; i++) {
 
-                int coordenadaY = (dimensionY -1) - j;
+                int coordenadaY = (dimensionY - 1) - j;
                 //System.out.println("DEBUG: COORDENADAS " + coordenadaY);
                 int coordenadaX = i;
                 BotonMina b;//creating instance of JButton
@@ -102,7 +98,7 @@ public class VistaNuevaJuego {
                 b.setBounds(xAxis, yAxis, buttonWidth, buttonHeigth);//x axis, y axis, width, height  
                 pnl_btn.add(b, "");//adding button in JFrame
                 listaBotones.add(b);
-                System.out.println("DEBUG: Coordenadas Boton [" + Integer.toString(b.getCoordenadaBotonX())+ " , " + Integer.toString(b.getCoordenadaBotonY()) + "]");
+                System.out.println("DEBUG: Coordenadas Boton [" + Integer.toString(b.getCoordenadaBotonX()) + " , " + Integer.toString(b.getCoordenadaBotonY()) + "]");
 
                 for (Mina minas : campo.getMinas()) {
 
@@ -115,6 +111,26 @@ public class VistaNuevaJuego {
                     }
 
                 }
+
+                b.addActionListener((e) -> {
+                    if (Vidas == 0) {
+                        if (perdido() == JOptionPane.YES_OPTION) {
+                            ventana.dispose();
+                            Vidas = 3;
+                            Vista_Config_Juego.config();
+                        } else {
+                            System.exit(0);
+                        }
+                    }
+                });
+
+                btn_reiniciar.addActionListener((e) -> {
+//                    Vista_Config_Juego.config();
+//                    ventana.dispose();
+//                    Vidas = 3;
+//                  Aquí está el error
+
+                });
 
                 b.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
@@ -191,5 +207,23 @@ public class VistaNuevaJuego {
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.setLocationRelativeTo(null);
 
+    }
+
+    public static int perdido() {
+        Object[] opciones = {
+            "OK",
+            "SALIR DEL JUEGO"
+        };
+
+        int respuesta = JOptionPane.showOptionDialog(
+                null,
+                "Oooops, has perdido todas tus vidas, debes de reiniciar el juego",
+                "Buscaminas",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                opciones,
+                opciones[0]);
+        return respuesta;
     }
 }

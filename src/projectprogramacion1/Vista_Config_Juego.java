@@ -9,13 +9,13 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.*;
 import net.miginfocom.swing.MigLayout;
-
 /**
  *
  * @author tati
  */
 public class Vista_Config_Juego {
     
+   
     public static void config() {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         VistaNuevaJuego juego = new VistaNuevaJuego();
@@ -32,7 +32,7 @@ public class Vista_Config_Juego {
         JLabel DimensionY = new JLabel("Dimension en Y");
         JLabel cant_minas = new JLabel("Digite la cantidad de minas que desea");
         JButton btn_iniciar = new JButton("Iniciar");
-        
+
         ventana.add(panel);
         panel.add(nombre_usuario, "align center, wrap");
         panel.add(txt_NombreUsuario, "align center, wrap, w 50%");
@@ -43,20 +43,25 @@ public class Vista_Config_Juego {
         panel.add(cant_minas, "align center, wrap");
         panel.add(txt_cantMinas, "align center, wrap, w 50%");
         panel.add(btn_iniciar, "align center");
-        
+
         btn_iniciar.addActionListener((e) -> {
             String nombre_Usuario = "";
             int dimX = 0;
             int dimY = 0;
-            int cantMinas = 0;   
+            int cantMinas = 0;
             nombre_Usuario = txt_NombreUsuario.getText();
             dimX = Integer.parseInt(txt_DimensionX.getText());
             dimY = Integer.parseInt(txt_DimensionY.getText());
             cantMinas = Integer.parseInt(txt_cantMinas.getText());
+
+            CrearHistorial historial = new CrearHistorial();
+            historial.escribirHistorial(nombre_Usuario);
+            
             juego.iniciar(dimX, dimY, cantMinas);
+
             ventana.dispose();
         });
-        
+
         ventana.setVisible(true);
         ventana.setSize(screenWidth, screenHeight);
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
